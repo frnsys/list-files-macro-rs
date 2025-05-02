@@ -77,7 +77,7 @@ pub fn list_files(input: TokenStream) -> TokenStream {
 	// Resolve directory
 	let absolute_path =
 		if path.starts_with(".") {
-			let source_path = Span::call_site().source_file().path();
+			let source_path = Span::call_site().local_file().unwrap();
 			source_path.parent().unwrap().join(&path).into_os_string().into_string().unwrap()
 		} else {
 			path
